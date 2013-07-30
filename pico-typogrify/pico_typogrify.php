@@ -16,13 +16,13 @@ class Pico_Typogrify {
 	{		
 		// default settings
 		$this->config = array(			
-			'amp'				=> true,
-    		'widont'			=> true,
-    		'SmartyPants'		=> true,
-			'caps'				=> true,
-			'initial_quotes'	=> true,
-			'do_guillemets'		=> false,
-			'dash'				=> true
+			'amp' => true,
+			'widont' => true,
+			'SmartyPants' => true,
+			'caps' => true,
+			'initial_quotes' => true,
+			'do_guillemets' => false,
+			'dash' => true
 		);
 	}
 	
@@ -49,6 +49,7 @@ class Pico_Typogrify {
 	{
 		require_once "php-typogrify.php";
 		
+		// where the magic happens
 		$typogrify = new Twig_SimpleFilter('typogrify', function ($string) {
 			if ($this->config['amp']) {
 				$string = amp($string);
@@ -72,6 +73,7 @@ class Pico_Typogrify {
 			return $string;
 		});	
 		
+		// add twig filter
 		$twig->addFilter($typogrify);
 	}
 
